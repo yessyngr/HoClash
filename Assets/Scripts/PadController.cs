@@ -1,0 +1,181 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+using DG.Tweening;
+
+public class PadController : MonoBehaviour {
+
+	public GameObject line;
+	public GameObject comment;
+
+	private GameObject _notes;	
+	private float _distance;
+	private int _noteCount;
+
+	private bool _checkingMiss;
+	private bool _isOnAnimation;
+
+	private float missDistance;
+
+	void Start()
+	{
+		_checkingMiss = true;
+		_isOnAnimation = false;
+
+		missDistance = 1.0f;
+
+		//notes interacting counted by _tapCount
+		_notes = NoteSpawnController.queueList[_noteCount];
+	}
+	
+
+	 void OnMouseDown ()
+    {
+		CoLineAnimation();
+
+		if(!_isOnAnimation && _noteCount < NoteSpawnController.queueList.Count)
+		{
+			//assign new notes
+			if(_noteCount >= NoteSpawnController.queueList.Count)
+			{
+				Debug.Log("wave ended!");
+			}
+			else
+			{
+				_notes = NoteSpawnController.queueList[_noteCount];
+	
+				//calculate distance and score
+				_distance = Mathf.Abs(_notes.transform.position.x - line.transform.position.x);
+				Scoring(_distance);
+				
+				//setactive false, move to next notes
+				_notes.SetActive(false);
+				_noteCount++;
+			}
+		}
+	}
+
+	/*
+	void Update()
+	{
+		Debug.Log(_noteCount);
+		Debug.Log(_checkingMiss);
+		_notes = NoteSpawnController.queueList[_noteCount];
+		
+		if(_noteCount >= NoteSpawnController.queueList.Count)
+		{
+			Debug.Log("wave ended!");
+		}
+
+		if(_notes.transform.position.x >= (line.transform.position.x + missDistance) && 
+			_checkingMiss)
+		{
+			Debug.Log("miss!");
+			CoMissRange();
+			_checkingMiss = false;
+		}
+	}
+	*/// <summary>
+	///
+	/// </summary>
+
+	void CoMissRange()
+	{
+		StartCoroutine(MissRange());
+	}
+	
+	//if miss because range
+	IEnumerator MissRange()
+	{
+		_noteCount++;
+
+		if(_noteCount <= NoteSpawnController.queueList.Count)
+		{
+			Debug.Log("spawn ended");
+			
+		} else {
+			_notes = NoteSpawnController.queueList[_noteCount];	
+		
+			_isOnAnimation = true;
+			comment.gameObject.GetComponent<Text>().text = "miss";
+			comment.gameObject.SetActive(true);		
+	
+			Vector3 zoomInScale = 1.5f*comment.gameObject.transform.localScale;
+			Tween zoomingIn = comment.gameObject.transform.DOScale(zoomInScale,0.2f);
+			yield return zoomingIn.WaitForCompletion ();
+			
+			Vector3 zoomOutScale = comment.gameObject.transform.localScale/1.5f;
+			Tween zoomingOut = comment.gameObject.transform.DOScale(zoomOutScale,0.2f);
+			yield return zoomingOut.WaitForCompletion ();
+			
+			comment.gameObject.SetActive(false);
+			_isOnAnimation = false;
+	
+			_checkingMiss = true;
+		}
+	}
+
+	void Scoring(float distance)
+	{
+		if(distance <0.15f)
+		{
+			CoShowComment ("Perfect");
+		}
+		else if(distance <0.3f)
+		{
+			CoShowComment ("Great");
+		}
+		else if(distance <0.5f)
+		{
+			CoShowComment ("Cool");
+		}
+		else if(distance <1.0f)
+		{
+			CoShowComment ("Bad");
+		}
+		else
+		{
+			CoShowComment ("Miss");
+		}
+	}
+
+	void CoLineAnimation()
+	{
+		StartCoroutine(LineAnimation());
+	}
+
+	IEnumerator LineAnimation()
+	{
+		Vector3 zoomInScale = 1.2f*line.gameObject.transform.localScale;
+		Tween zoomingIn = line.gameObject.transform.DOScale(zoomInScale,0.2f);
+		yield return zoomingIn.WaitForCompletion();
+
+		Vector3 zoomOutScale = line.gameObject.transform.localScale/1.2f;
+		Tween zoomingOut = line.gameObject.transform.DOScale(zoomOutScale,0.2f);
+		yield return zoomingOut.WaitForCompletion ();
+	}
+	
+
+	void CoShowComment(string commentString)
+	{
+		StartCoroutine(ShowComment(commentString));
+	}
+	
+	IEnumerator ShowComment(string commentString)
+	{
+		_isOnAnimation = true;
+		comment.gameObject.GetComponent<Text>().text = commentString;
+		comment.gameObject.SetActive(true);		
+
+		Vector3 zoomInScale = 1.5f*comment.gameObject.transform.localScale;
+		Tween zoomingIn = comment.gameObject.transform.DOScale(zoomInScale,0.2f);
+		yield return zoomingIn.WaitForCompletion ();
+		
+		Vector3 zoomOutScale = comment.gameObject.transform.localScale/1.5f;
+		Tween zoomingOut = comment.gameObject.transform.DOScale(zoomOutScale,0.2f);
+		yield return zoomingOut.WaitForCompletion ();
+		
+		comment.gameObject.SetActive(false);
+		_isOnAnimation = false;
+	}
+}

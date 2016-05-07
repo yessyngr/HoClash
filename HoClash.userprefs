@@ -1,0 +1,22 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/dialogueDatabase.json">
+    <Files>
+      <File FileName="Assets/Scripts/dialogueDatabase.json" Line="18" Column="22" />
+      <File FileName="Assets/Scripts/SpawnObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LifeController.cs" Line="45" Column="22" />
+      <File FileName="Assets/Scripts/characterDatabase.json" Line="12" Column="14" />
+      <File FileName="Assets/Scripts/ThrowEnemy.cs" Line="36" Column="21" NotebookId="1" />
+      <File FileName="Assets/Scripts/TempScore.cs" Line="19" Column="38" NotebookId="1" />
+      <File FileName="Assets/Scripts/EnemyController.cs" Line="16" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/BossController.cs" Line="35" Column="20" NotebookId="1" />
+      <File FileName="Assets/Scripts/DialogueController.cs" Line="34" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/SpeakerController.cs" Line="9" Column="23" NotebookId="1" />
+      <File FileName="Assets/Scripts/JsonManager.cs" Line="30" Column="40" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

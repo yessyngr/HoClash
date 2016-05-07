@@ -1,0 +1,25 @@
+{
+	"stages":
+	[
+		
+		{
+			"stage":
+			[
+				{"id":1,"speaker":"player","text": "test 01!"},
+				{"id":2,"speaker":"boss","text": "test 02!"},
+				{"id":3,"speaker":"player","text": "test 03!"}
+			]
+		},
+		
+		{
+			"stage":
+			[
+				{"id":1,"speaker":"player","text": "11test 01!"},
+				{"id":2,"speaker":"boss","text": "22test 02!"},
+				{"id":3,"speaker":"player","text": "33test 03!"}
+			]		
+		}
+		
+	]
+
+}

@@ -1,0 +1,14 @@
+{
+	"player":
+	{
+		"name":"Player01",
+		"HP":120,
+		"attack":20
+	},
+	"boss":
+	{
+		"name":"Sludge",
+		"HP":150,
+		"attack":70
+	}
+}
