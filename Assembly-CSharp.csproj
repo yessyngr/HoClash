@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{FE9E08E9-A103-EEA6-E0C2-5FEFC0ACE1D9}</ProjectGuid>
+    <ProjectGuid>{8427F436-8BD3-D7F6-187A-492A4CE83BE0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -78,16 +78,16 @@
  <HintPath>/Applications/Unity_5.3.4f1/Unity_5.3.4f1.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>/Users/yessy-anggraini/Documents/unity_project/HoClash/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ <HintPath>/Users/yessy-anggraini/Documents/HoClash_remote/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="DOTween43">
- <HintPath>/Users/yessy-anggraini/Documents/unity_project/HoClash/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
+ <HintPath>/Users/yessy-anggraini/Documents/HoClash_remote/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
  </Reference>
  <Reference Include="DOTween46">
- <HintPath>/Users/yessy-anggraini/Documents/unity_project/HoClash/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
+ <HintPath>/Users/yessy-anggraini/Documents/HoClash_remote/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
  </Reference>
  <Reference Include="DOTween50">
- <HintPath>/Users/yessy-anggraini/Documents/unity_project/HoClash/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
+ <HintPath>/Users/yessy-anggraini/Documents/HoClash_remote/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

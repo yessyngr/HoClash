@@ -75,9 +75,7 @@ public class PadController : MonoBehaviour {
 			_checkingMiss = false;
 		}
 	}
-	*/// <summary>
-	///
-	/// </summary>
+	*/
 
 	void CoMissRange()
 	{
