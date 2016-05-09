@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\Scripts\ActiveAreaController.cs" />
      <Compile Include="Assets\Scripts\AttachToGameObject.cs" />
      <Compile Include="Assets\Scripts\BombTapped.cs" />
      <Compile Include="Assets\Scripts\BossController.cs" />

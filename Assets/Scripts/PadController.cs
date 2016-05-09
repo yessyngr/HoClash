@@ -26,6 +26,7 @@ public class PadController : MonoBehaviour {
 		missDistance = 1.0f;
 
 		//notes interacting counted by _tapCount
+		//_notes = NoteSpawnController.queueList[noteCount];
 		_notes = NoteSpawnController.queueList[noteCount];
 	}
 	
