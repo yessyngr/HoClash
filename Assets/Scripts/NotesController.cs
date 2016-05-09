@@ -15,7 +15,7 @@ public class NotesController : MonoBehaviour {
 
 	void Update ()
 	{
-		Vector3 deactivePosition = new Vector3(3.5f, startPosition.y);
+		Vector3 deactivePosition = new Vector3(5.0f, startPosition.y);
 		int speed = 2;
 		transform.position = Vector3.MoveTowards(transform.position, deactivePosition, Time.deltaTime * speed);
 		
@@ -23,8 +23,6 @@ public class NotesController : MonoBehaviour {
 		if(transform.position.x >= deactivePosition.x)
 		{
 			transform.position = startPosition;
-
-			PadController padController = new PadController();
 			gameObject.SetActive(false);
 		}
 	}

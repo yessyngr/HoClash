@@ -10,7 +10,8 @@ public class PadController : MonoBehaviour {
 
 	private GameObject _notes;	
 	private float _distance;
-	private int _noteCount;
+	[HideInInspector]
+	public int noteCount;
 
 	private bool _checkingMiss;
 	private bool _isOnAnimation;
@@ -25,24 +26,25 @@ public class PadController : MonoBehaviour {
 		missDistance = 1.0f;
 
 		//notes interacting counted by _tapCount
-		_notes = NoteSpawnController.queueList[_noteCount];
+		_notes = NoteSpawnController.queueList[noteCount];
 	}
 	
 
 	 void OnMouseDown ()
     {
-		CoLineAnimation();
 
-		if(!_isOnAnimation && _noteCount < NoteSpawnController.queueList.Count)
+		if(!_isOnAnimation && noteCount < NoteSpawnController.queueList.Count)
 		{
+			CoLineAnimation();
+
 			//assign new notes
-			if(_noteCount >= NoteSpawnController.queueList.Count)
+			if(noteCount >= NoteSpawnController.queueList.Count)
 			{
 				Debug.Log("wave ended!");
 			}
 			else
 			{
-				_notes = NoteSpawnController.queueList[_noteCount];
+				_notes = NoteSpawnController.queueList[noteCount];
 	
 				//calculate distance and score
 				_distance = Mathf.Abs(_notes.transform.position.x - line.transform.position.x);
@@ -50,66 +52,8 @@ public class PadController : MonoBehaviour {
 				
 				//setactive false, move to next notes
 				_notes.SetActive(false);
-				_noteCount++;
+				noteCount++;
 			}
-		}
-	}
-
-	/*
-	void Update()
-	{
-		Debug.Log(_noteCount);
-		Debug.Log(_checkingMiss);
-		_notes = NoteSpawnController.queueList[_noteCount];
-		
-		if(_noteCount >= NoteSpawnController.queueList.Count)
-		{
-			Debug.Log("wave ended!");
-		}
-
-		if(_notes.transform.position.x >= (line.transform.position.x + missDistance) && 
-			_checkingMiss)
-		{
-			Debug.Log("miss!");
-			CoMissRange();
-			_checkingMiss = false;
-		}
-	}
-	*/
-
-	void CoMissRange()
-	{
-		StartCoroutine(MissRange());
-	}
-	
-	//if miss because range
-	IEnumerator MissRange()
-	{
-		_noteCount++;
-
-		if(_noteCount <= NoteSpawnController.queueList.Count)
-		{
-			Debug.Log("spawn ended");
-			
-		} else {
-			_notes = NoteSpawnController.queueList[_noteCount];	
-		
-			_isOnAnimation = true;
-			comment.gameObject.GetComponent<Text>().text = "miss";
-			comment.gameObject.SetActive(true);		
-	
-			Vector3 zoomInScale = 1.5f*comment.gameObject.transform.localScale;
-			Tween zoomingIn = comment.gameObject.transform.DOScale(zoomInScale,0.2f);
-			yield return zoomingIn.WaitForCompletion ();
-			
-			Vector3 zoomOutScale = comment.gameObject.transform.localScale/1.5f;
-			Tween zoomingOut = comment.gameObject.transform.DOScale(zoomOutScale,0.2f);
-			yield return zoomingOut.WaitForCompletion ();
-			
-			comment.gameObject.SetActive(false);
-			_isOnAnimation = false;
-	
-			_checkingMiss = true;
 		}
 	}
 
@@ -154,7 +98,7 @@ public class PadController : MonoBehaviour {
 	}
 	
 
-	void CoShowComment(string commentString)
+	public void CoShowComment(string commentString)
 	{
 		StartCoroutine(ShowComment(commentString));
 	}
