@@ -3,12 +3,17 @@ using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
 
+using System.Collections.Generic;
+
 public class PadController : MonoBehaviour {
 
 	public GameObject line;
 	public GameObject comment;
+	public GameObject activeArea;
+	
+	[HideInInspector]	
+	public List<GameObject> notes;
 
-	private GameObject _notes;	
 	private float _distance;
 	[HideInInspector]
 	public int noteCount;
@@ -27,34 +32,22 @@ public class PadController : MonoBehaviour {
 
 		//notes interacting counted by _tapCount
 		//_notes = NoteSpawnController.queueList[noteCount];
-		_notes = NoteSpawnController.queueList[noteCount];
+		notes = new List<GameObject>();
+		
 	}
 	
 
 	 void OnMouseDown ()
-    {
-
-		if(!_isOnAnimation && noteCount < NoteSpawnController.queueList.Count)
+    {	
+		if(!_isOnAnimation && notes.Count > 0)
 		{
 			CoLineAnimation();
 
-			//assign new notes
-			if(noteCount >= NoteSpawnController.queueList.Count)
-			{
-				Debug.Log("wave ended!");
-			}
-			else
-			{
-				_notes = NoteSpawnController.queueList[noteCount];
-	
-				//calculate distance and score
-				_distance = Mathf.Abs(_notes.transform.position.x - line.transform.position.x);
-				Scoring(_distance);
-				
-				//setactive false, move to next notes
-				_notes.SetActive(false);
-				noteCount++;
-			}
+			_distance = Mathf.Abs(notes[0].transform.position.x - line.transform.position.x);
+			Scoring(_distance);
+			
+			notes[0].SetActive(false);
+			notes.RemoveAt(0);
 		}
 	}
 
@@ -64,15 +57,15 @@ public class PadController : MonoBehaviour {
 		{
 			CoShowComment ("Perfect");
 		}
-		else if(distance <0.3f)
+		else if(distance <0.4f)
 		{
 			CoShowComment ("Great");
 		}
-		else if(distance <0.5f)
+		else if(distance <0.8f)
 		{
 			CoShowComment ("Cool");
 		}
-		else if(distance <1.0f)
+		else if(distance <1.2f)
 		{
 			CoShowComment ("Bad");
 		}
