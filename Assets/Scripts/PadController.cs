@@ -13,6 +13,8 @@ public class PadController : MonoBehaviour {
 	
 	[HideInInspector]	
 	public List<GameObject> notes;
+	[HideInInspector]
+	public int playedNotes;
 
 	private float _distance;
 	[HideInInspector]
@@ -39,17 +41,32 @@ public class PadController : MonoBehaviour {
 
 	 void OnMouseDown ()
     {	
-		if(!_isOnAnimation && notes.Count > 0)
+		if(!_isOnAnimation)
 		{
 			CoLineAnimation();
-
-			_distance = Mathf.Abs(notes[0].transform.position.x - line.transform.position.x);
-			Scoring(_distance);
 			
-			notes[0].SetActive(false);
-			notes.RemoveAt(0);
+			if(notes.Count > 0)
+			{
+				_distance = Mathf.Abs(notes[0].transform.position.x - line.transform.position.x);
+				Scoring(_distance);
+				
+				notes[0].SetActive(false);
+				notes.RemoveAt(0);
+				playedNotes++;
+				CheckFinishWave();
+			}
 		}
 	}
+
+	public void CheckFinishWave()
+	{
+		if (playedNotes == NoteSpawnController.queueList.Count)
+		{
+			Debug.Log("Wave ended, attacking");
+			LifeController.DecreaseBossLife();
+		}
+	}
+	
 
 	void Scoring(float distance)
 	{

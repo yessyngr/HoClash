@@ -20,10 +20,10 @@ public class ActiveAreaController : MonoBehaviour {
 		if(coll.gameObject.tag == "notes")
 		{
 			notesInArea.Add(coll.gameObject);
-			Debug.Log("in notesInArea :" + notesInArea.Count);
+			//Debug.Log("in notesInArea :" + notesInArea.Count);
 
 			pad.GetComponent<PadController>().notes = notesInArea;
-			Debug.Log("updated :" + pad.GetComponent<PadController>().notes.Count);
+			//Debug.Log("updated :" + pad.GetComponent<PadController>().notes.Count);
 		}
 		
 	}
@@ -37,7 +37,10 @@ public class ActiveAreaController : MonoBehaviour {
 
 			//show miss comment
 			PadController padController = pad.GetComponent<PadController>();
-			padController.CoShowComment("miss!");
+			padController.CoShowComment("Miss!");
+			
+			padController.playedNotes++;
+			padController.CheckFinishWave();
 		}
 	}
 	

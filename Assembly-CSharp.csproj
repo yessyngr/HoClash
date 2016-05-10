@@ -52,7 +52,6 @@
      <Compile Include="Assets\Scripts\BombTapped.cs" />
      <Compile Include="Assets\Scripts\BossController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\CleanerController.cs" />
      <Compile Include="Assets\Scripts\DialogueController.cs" />
      <Compile Include="Assets\Scripts\ElementController.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
